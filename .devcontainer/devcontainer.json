@@ -1,0 +1,36 @@
+{
+  "name": "Nautobot Dev Container",
+  // Using an empty array will run docker-compose without any -f option.
+  // Because the working directory is the project folder,
+  // it will look there for a docker-compose.yml and docker-compose.override.yml.
+  // https://github.com/microsoft/vscode-remote-release/issues/1080
+  "dockerComposeFile": [ ],
+  "features": {
+    "ghcr.io/devcontainers/features/docker-outside-of-docker:1": {
+      "moby": false
+    },
+    "ghcr.io/devcontainers-extra/features/pre-commit:2": { },
+    "ghcr.io/stuartleeks/dev-container-features/shell-history:0": { }
+  },
+  "service": "dev",
+  "shutdownAction": "stopCompose",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "astral-sh.ty",
+        "charliermarsh.ruff",
+        "DavidAnson.vscode-markdownlint",
+        "EditorConfig.EditorConfig",
+        "samuelcolvin.jinjahtml",
+        "tamasfe.even-better-toml",
+        "yzhang.markdown-all-in-one"
+      ]
+    }
+  },
+  "remoteUser": "vscode",
+  "workspaceFolder": "/workspace",
+  "postCreateCommand": "bash .devcontainer/scripts/postCreateCommand.sh",
+  "postStartCommand": "bash .devcontainer/scripts/postStartCommand.sh"
+}

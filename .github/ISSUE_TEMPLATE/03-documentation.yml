@@ -1,0 +1,31 @@
+name: Documentation
+description: Suggest updates or additions to documentation.
+title: "[Docs]: "
+labels: ["documentation"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: >-
+        Please describe the inconsistency or issue you have found in our
+        documentation or indicate where you feel there is a need for improvement.
+    validations:
+      required: true
+  - type: textarea
+    id: sections
+    attributes:
+      label: Sections
+      description: >-
+        What part of the documentation needs to be updated or added? Please list all
+        links to the sections of our documentation that are impacted by the issue you
+        described above.
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-change
+    attributes:
+      label: Proposed change
+      description: Please describe your suggestion.
+    validations:
+      required: false

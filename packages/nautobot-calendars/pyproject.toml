@@ -1,0 +1,32 @@
+[project]
+name = "nautobot-calendars"
+version = "1.0.0rc0"
+description = "A Calendaring/Scheduling App for Nautobot."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{ name = "Eric Jacob", email = "erjac77@gmail.com" }]
+keywords = ["nautobot", "calendar", "schedule", "event", "recurrence"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Environment :: Plugins",
+  "Intended Audience :: Developers",
+  "Programming Language :: Python",
+  "Topic :: System :: Networking",
+]
+dependencies = [
+  "jsonschema[format]>=4.26.0",
+  "nautobot>=3.1.0",
+  "python-dateutil>=2.9.0.post0",
+]
+
+[project.urls]
+Homepage = "https://erjac77.github.io/nautobot-apps/"
+Documentation = "https://erjac77.github.io/nautobot-apps/calendars/"
+Repository = "https://github.com/erjac77/nautobot-apps"
+Issues = "https://github.com/erjac77/nautobot-apps/issues"
+Changelog = "https://erjac77.github.io/nautobot-apps/calendars/release-notes/"
+
+[build-system]
+requires = ["uv_build>=0.12.3,<0.13"]
+build-backend = "uv_build"

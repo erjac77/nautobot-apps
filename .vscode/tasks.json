@@ -1,0 +1,69 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "nautobot createsuperuser",
+      "command": "uv run python src/nautobot_apps/manage.py createsuperuser",
+      "problemMatcher": [ ]
+    },
+    {
+      "type": "shell",
+      "label": "nautobot makemigrations",
+      "command": "uv run python src/nautobot_apps/manage.py makemigrations",
+      "problemMatcher": [ ]
+    },
+    {
+      "type": "shell",
+      "label": "nautobot migrate",
+      "command": "uv run python src/nautobot_apps/manage.py migrate",
+      "problemMatcher": [ ]
+    },
+    {
+      "type": "shell",
+      "label": "nautobot runserver",
+      "command": "uv run python src/nautobot_apps/manage.py runserver 0.0.0.0:8080 --insecure",
+      "isBackground": true,
+      "problemMatcher": [ ]
+    },
+    {
+      "type": "shell",
+      "label": "nautobot celery worker",
+      "command": "uv run python src/nautobot_apps/manage.py celery worker --loglevel INFO",
+      "isBackground": true,
+      "problemMatcher": [
+        {
+          "pattern": {
+            "regexp": "^.*$"
+          },
+          "background": {
+            "activeOnStart": true,
+            "beginsPattern": "celery",
+            "endsPattern": "ready\\."
+          }
+        }
+      ]
+    },
+    {
+      "label": "nautobot all-in-one",
+      "dependsOrder": "sequence",
+      "dependsOn": [
+        "nautobot celery worker",
+        "nautobot runserver"
+      ],
+      "problemMatcher": [ ]
+    },
+    {
+      "type": "shell",
+      "label": "nautobot nbshell",
+      "command": "uv run python src/nautobot_apps/manage.py nbshell",
+      "problemMatcher": [ ]
+    },
+    {
+      "type": "shell",
+      "label": "zensical serve",
+      "command": "uvx zensical@0.0.57 serve",
+      "problemMatcher": [ ]
+    }
+  ]
+}

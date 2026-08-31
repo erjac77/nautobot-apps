@@ -1,0 +1,9 @@
+[project]
+name = "pytest-nautobot"
+version = "1.0.0"
+description = "A Pytest plugin for Nautobot."
+requires-python = ">=3.11"
+dependencies = ["nautobot>=3.1.0"]
+
+[project.entry-points.pytest11]
+pytest_nautobot = "pytest_nautobot.plugin"

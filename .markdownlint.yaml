@@ -1,0 +1,26 @@
+---
+# MD007 - Unordered list indentation
+MD007:
+  indent: 4
+
+# MD013 - Line length
+MD013: false
+
+# MD024 - Multiple headings with the same content
+MD024:
+  siblings_only: true
+
+# MD033 - Inline HTML
+MD033:
+  allowed_elements: [br, div, figure, img, ins, p, picture, source]
+
+# MD046 - Code block style
+MD046: false  # Conflicting with admonitions
+
+# MD048 - Code fence style
+MD048:
+  style: backtick
+
+# MD049 - Emphasis style
+MD049:
+  style: underscore

@@ -1,0 +1,162 @@
+[project]
+name = "nautobot-apps"
+version = "1.0.0"
+description = "A collection of community-maintained Apps for Nautobot"
+requires-python = ">=3.11"
+dependencies = ["dotenv>=0.9.9", "nautobot-calendars"]
+
+[dependency-groups]
+dev = [
+    "django-debug-toolbar>=6.3.0",
+    # Tests
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+    "pytest-django>=4.12.0",
+    "pytest-env>=1.6.0",
+    "pytest-factoryboy>=2.8.1",
+    "pytest-nautobot",
+    "pytest-testmon>=2.2.0",
+    # Types
+    "django-types>=0.24.0",
+    "djangorestframework-types>=0.9.0",
+]
+
+[tool.uv]
+package = false
+required-version = ">=0.12.3,<0.13"
+
+[tool.uv.sources]
+nautobot-calendars = { workspace = true }
+pytest-nautobot = { workspace = true }
+
+[tool.uv.workspace]
+members = ["packages/*"]
+
+##############################
+# Ruff
+##############################
+
+[tool.ruff]
+# In addition to the standard set of exclusions, omit these files:
+extend-exclude = ["__pycache__"]
+force-exclude = true
+line-length = 100
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "COM812", # Missing trailing commas
+    "CPY001", # Missing copyright
+    "D1",     # Missing docstring
+    "FIX002", # TODO comments
+]
+
+[tool.ruff.lint.isort]
+lines-after-imports = 2
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["RUF012"]
+"manage.py" = ["INP001"]
+"nautobot_config*.py" = ["F403", "F405", "INP001"]
+"**/migrations/*" = ["E501", "RUF012"]
+"test_*.py" = ["E501", "S101"]
+"**/tests/**.py" = ["INP001"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+##############################
+# ty
+##############################
+
+[tool.ty.src]
+include = ["packages", "src"]
+exclude = ["**/migrations/**"]
+
+##############################
+# Pytest
+##############################
+
+[tool.pytest.ini_options]
+addopts = "-p pytest_nautobot --no-migrations --reuse-db --create-db"
+django_find_project = false
+filterwarnings = [
+    "ignore::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+[tool.pytest_env]
+NAUTOBOT_CONFIG = "src/nautobot_apps/nautobot_config_base.py"
+env_files = ["nautobot.env"]
+
+##############################
+# Coverage
+##############################
+
+[tool.coverage.run]
+# A list of file name patterns, the files to leave out of reporting.
+omit = ["packages/*/migrations/*.py", "packages/pytest-nautobot/*"]
+
+[tool.coverage.report]
+fail_under = 80
+# A list of file name patterns, the files to leave out of reporting.
+omit = ["packages/*/migrations/*.py", "packages/pytest-nautobot/*"]
+# When running a summary report, show missing lines.
+show_missing = true
+# Don't report files that are 100% covered.
+skip_covered = true
+
+##############################
+# Commitizen
+##############################
+
+[tool.commitizen]
+name = "cz_customize"
+
+[tool.commitizen.customize]
+message_template = "{{change_type}}({{scope}}): {{message}}"
+
+[[tool.commitizen.customize.questions]]
+type = "select"
+name = "change_type"
+message = "Select the type of change you are committing"
+choices = [
+    { value = "fix", name = "fix: A bug fix. Correlates with PATCH in SemVer" },
+    { value = "feat", name = "feat: A new feature. Correlates with MINOR in SemVer" },
+    { value = "docs", name = "docs: Documentation only changes" },
+    { value = "style", name = "style: Changes that do not affect the meaning of the code" },
+    { value = "refactor", name = "refactor: A code change that neither fixes a bug nor adds a feature" },
+    { value = "perf", name = "perf: A code change that improves performance" },
+    { value = "test", name = "test: Adding missing or correcting existing tests" },
+    { value = "build", name = "build: Changes that affect the build system or external dependencies" },
+    { value = "ci", name = "ci: Changes to CI configuration files and scripts" },
+]
+
+[[tool.commitizen.customize.questions]]
+type = "list"
+name = "scope"
+choices = [
+    { value = "shared", name = "shared: Shared changes." },
+    { value = "deps", name = "deps: Dependency-related changes." },
+    { value = "gha", name = "gha: GitHub Actions-related changes." },
+    { value = "calendars", name = "calendars: Calendars-related features or fixes." },
+]
+message = "What is the scope of this change?"
+
+[[tool.commitizen.customize.questions]]
+type = "input"
+name = "message"
+message = "Write a short and imperative summary of the code changes: (lower case and no period)"
+
+##############################
+# Towncrier
+##############################
+
+[tool.towncrier]
+# It's important to keep these config fields empty
+# because we have more than one package/name to manage.
+package = ""
+name = ""
+filename = "release-notes.md"
+title_format = "## v{version} ({project_date})"
+issue_format = "[#{issue}](https://github.com/erjac77/nautobot-apps/issues/{issue})"

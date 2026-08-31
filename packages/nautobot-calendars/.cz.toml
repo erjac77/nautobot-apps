@@ -1,0 +1,13 @@
+[tool.commitizen]
+name = "cz_customize"
+version = "1.0.0rc0"
+tag_format = "calendars@${version}"
+bump_message = "bump(calendars): version $current_version → $new_version"
+# Avoid noise from other tags
+ignored_tag_formats = ["*@${version}"]
+version_files = ["pyproject.toml:version"]
+# We hook into commitizen's pre-bump to refresh the workspace lockfile
+pre_bump_hooks = ["uv lock", "git add :/uv.lock"]
+
+[tool.commitizen.customize]
+changelog_pattern = "^(feat|fix)\\(calendars\\)(!)?:"

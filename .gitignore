@@ -1,0 +1,37 @@
+### Python ###
+*.log
+*.pyc
+__pycache__/
+
+# Distribution / packaging
+dist/
+*.egg-info/
+
+# Unit test / coverage reports
+.coverage
+.cache/
+.pytest_cache/
+.testmondata
+
+# Environments
+*.env
+!nautobot.env
+!.devcontainer/postgres.env
+.venv/
+
+# mkdocs/zensical documentation
+site/
+
+# ruff
+.ruff_cache/
+
+### VisualStudioCode ###
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/*.code-snippets
+
+### Docker ###
+docker-compose.override.yml

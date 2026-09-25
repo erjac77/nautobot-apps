@@ -1,0 +1,22 @@
+{
+  // Global editor settings
+  "editor.codeActionsOnSave": {
+    "source.fixAll.markdownlint": "explicit"
+  },
+  "editor.formatOnSave": true,
+  // JSON
+  "json.format.keepLines": true,
+  "workbench.settings.useSplitJSON": false,
+  // Markdown
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  // Python
+  "[python]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll": "explicit",
+      "source.organizeImports": "explicit"
+    },
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  }
+}

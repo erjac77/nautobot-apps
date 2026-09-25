@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: GitHub Nautobot Apps Discussions
+    url: https://github.com/erjac77/nautobot-apps/discussions/
+    about: Please ask and answer questions here.
+  - name: GitHub Nautobot Apps Issues
+    url: https://github.com/erjac77/nautobot-apps/issues/
+    about: Please report bugs here.

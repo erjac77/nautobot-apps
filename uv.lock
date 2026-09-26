@@ -1932,7 +1932,7 @@ dev = [
 
 [[package]]
 name = "nautobot-schedule"
-version = "1.0.0.dev0"
+version = "1.0.0a0"
 source = { editable = "packages/nautobot-app-schedule" }
 dependencies = [
     { name = "jsonschema", extra = ["format"] },

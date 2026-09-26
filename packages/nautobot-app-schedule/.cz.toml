@@ -1,6 +1,6 @@
 [tool.commitizen]
 name = "cz_customize"
-version = "1.0.0.dev0"
+version = "1.0.0a0"
 tag_format = "schedule@${version}"
 bump_message = "bump(schedule): version $current_version → $new_version"
 # Avoid noise from other tags

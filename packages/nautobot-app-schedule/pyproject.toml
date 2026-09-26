@@ -1,6 +1,6 @@
 [project]
 name = "nautobot-schedule"
-version = "1.0.0.dev0"
+version = "1.0.0a0"
 description = "A Scheduleing/Scheduling App for Nautobot."
 readme = "README.md"
 requires-python = ">=3.11"
